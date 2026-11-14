@@ -1,0 +1,441 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to use the Binary Tree Visualiser, understand tree diagrams, animation controls, BST operations and Binary Heap operations.">
+    <title>Instructions | Binary Tree Visualiser</title>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a class="site-brand" href="index.html" aria-label="Home">
+            <span class="brand-placeholder">BINARY TREE<br>VISUALISER</span>
+        </a>
+        <button class="menu-toggle" type="button"
+                aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="bst.html">BST</a>
+            <a href="heap.html">Binary Heap</a>
+            <a href="instructions.html" aria-current="page">Instructions</a>
+            <a href="pseudocodes.html">Pseudocodes</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-main instructions-page">
+    <h1 class="page-heading">User Instructions</h1>
+    <p class="page-intro">
+        Learn how to use the Binary Tree Visualiser, understand its graphical
+        elements and explore the operations available for Binary Search Trees
+        and Binary Heaps.
+    </p>
+
+    <nav class="quick-menu" aria-label="Instructions contents">
+        <strong>Quick navigation</strong>
+        <ul>
+            <li><a href="#getting-started">Getting started</a></li>
+            <li><a href="#tree-basics">Tree basics</a></li>
+            <li><a href="#graphic-elements">Graphic elements</a></li>
+            <li><a href="#animation-controls">Animation controls</a></li>
+            <li><a href="#history-controls">History controls</a></li>
+            <li><a href="#bst-operations">BST operations</a></li>
+            <li><a href="#heap-operations">Heap operations</a></li>
+            <li><a href="#tips">Usage tips</a></li>
+        </ul>
+    </nav>
+
+    <section id="getting-started">
+        <h2>1. Getting started</h2>
+        <div class="info-card">
+            <p>
+                The application provides two interactive visualisers:
+            </p>
+            <ul>
+                <li>
+                    <strong>Binary Search Tree (BST):</strong>
+                    explore insertion, searching, deletion, tree traversals,
+                    minimum, maximum, predecessor and successor operations.
+                    <a href="bst.html">Open the BST Visualiser</a>.
+                </li>
+                <li>
+                    <strong>Binary Heap:</strong>
+                    explore heap construction, insertion, deletion,
+                    extraction of the maximum value, maximum lookup and Heap Sort.
+                    <a href="heap.html">Open the Binary Heap Visualiser</a>.
+                </li>
+            </ul>
+            <p>
+                Select an operation, provide the required input and watch the
+                application animate the algorithm step by step.
+                The animation and history controls help you follow the
+                algorithm's execution.
+            </p>
+        </div>
+    </section>
+
+    <section id="tree-basics">
+        <h2>2. Basic concepts</h2>
+
+        <div class="info-card">
+            <h3>Binary Tree</h3>
+            <p>
+                A binary tree is a hierarchical data structure in which each
+                node can have at most two children: a left child and a right child.
+                The topmost node is called the root.
+            </p>
+
+            <h3>Binary Search Tree (BST)</h3>
+            <p>
+                A Binary Search Tree follows an ordering rule. Values smaller
+                than a node are placed in its left subtree, while values greater
+                than or equal to the node are placed in its right subtree.
+                This visualiser places duplicate values in the right subtree.
+            </p>
+
+            <h3>Binary Max Heap</h3>
+            <p>
+                A Binary Max Heap is a complete binary tree in which every
+                parent has a value greater than or equal to the values of
+                its children. Therefore, the maximum value is always at the root.
+            </p>
+            <p>
+                Unlike a BST, a heap does not maintain a complete sorted
+                left-to-right ordering of all values.
+            </p>
+        </div>
+    </section>
+
+    <section id="graphic-elements">
+        <h2>3. Understanding graphic elements</h2>
+        <p>
+            During an animation, the visualiser displays symbols and indicators
+            to explain what the algorithm is currently processing.
+        </p>
+
+        <div class="diagram-grid">
+            <article class="diagram-card">
+                <h3>Node</h3>
+                <img src="assets/images/instructions/node.png" alt="A tree node containing a value">
+                <p>A node represents an individual element of the tree and stores its value.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Selected node</h3>
+                <img src="assets/images/instructions/selected_node.png" alt="A selected tree node highlighted in red">
+                <p>A selected node is highlighted with a red outline. Click a node to select it for operations that require a node.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Edge</h3>
+                <img src="assets/images/instructions/edge.png" alt="An edge connecting two nodes">
+                <p>An edge connects a parent node to one of its children.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Parent and children</h3>
+                <img src="assets/images/instructions/parent_with_children.png" alt="A parent node with left and right children">
+                <p>A parent can have a left child, a right child, both children, or no children.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Comparison signs</h3>
+                <img src="assets/images/instructions/comparison_signs.png" alt="Comparison symbols used between nodes">
+                <p>Comparison indicators show how the algorithm compares node values.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Continue in parent or child</h3>
+                <img src="assets/images/instructions/continue_in_parent,left_child,right_child.png" alt="Indicators for continuing in a parent, left child or right child">
+                <p>These indicators show the next node or direction being followed by the algorithm.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Missing child</h3>
+                <img src="assets/images/instructions/no_left,right_child.png" alt="Indicators showing that a left or right child is missing">
+                <p>Indicates that the current node does not have the corresponding left or right child.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Enter or leave tree</h3>
+                <img src="assets/images/instructions/enter,leave_tree.png" alt="Indicators for entering or leaving a tree">
+                <p>Marks the beginning or completion of an algorithm that traverses the tree.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Came from left or right</h3>
+                <img src="assets/images/instructions/came_from_the_left,right.png" alt="Indicators showing arrival from a left or right child">
+                <p>Shows that the algorithm reached the current node from the indicated child.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Did not come from left or right</h3>
+                <img src="assets/images/instructions/did_not_come_from_the_left,right.png" alt="Indicators showing that a traversal did not come from a particular child">
+                <p>Shows that the corresponding previous-child condition is not satisfied.</p>
+            </article>
+
+            <article class="diagram-card">
+                <h3>Array representation</h3>
+                <img src="assets/images/instructions/array.png" alt="An array representing tree values">
+                <p>
+                    A binary heap can be represented using an array. In a
+                    one-based representation, the children of index i are
+                    at positions 2i and 2i + 1.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section id="animation-controls">
+        <h2>4. Animation controls</h2>
+        <p>
+            Animation controls let you follow an algorithm, pause it,
+            replay it or move between recorded operations.
+        </p>
+
+        <div class="control-list">
+            <article class="control-item">
+                <strong>Play</strong>
+                Starts or resumes a paused animation.
+            </article>
+            <article class="control-item">
+                <strong>Pause</strong>
+                Pauses the animation at its current position.
+            </article>
+            <article class="control-item">
+                <strong>Skip Backward</strong>
+                Moves the current animation back to its beginning.
+            </article>
+            <article class="control-item">
+                <strong>Skip Forward</strong>
+                Moves the current animation to its end without automatically
+                starting the next recorded operation.
+            </article>
+            <article class="control-item">
+                <strong>Previous</strong>
+                Moves to the previous algorithm in the history and plays it.
+            </article>
+            <article class="control-item">
+                <strong>Next</strong>
+                Moves to the next algorithm in the history and plays it.
+            </article>
+            <article class="control-item">
+                <strong>Continuously</strong>
+                When enabled, the next recorded animation starts automatically
+                after the current one finishes.
+            </article>
+            <article class="control-item">
+                <strong>Speed of move</strong>
+                Adjusts the duration of movement animations. A shorter duration
+                makes moving elements travel faster.
+            </article>
+            <article class="control-item">
+                <strong>Duration of a step</strong>
+                Adjusts how long non-movement animation steps remain visible.
+            </article>
+        </div>
+    </section>
+
+    <section id="history-controls">
+        <h2>5. History controls</h2>
+        <div class="info-card">
+            <p>
+                Executed algorithms are recorded in the history list.
+                You can select an earlier operation to replay it and inspect
+                how the tree reached its current state.
+            </p>
+            <ul>
+                <li>Operations are listed in execution order.</li>
+                <li>The current operation is indicated in the history list.</li>
+                <li>Select an earlier operation to revisit that point.</li>
+                <li>
+                    Executing a new operation after revisiting an earlier
+                    history point changes the subsequent history.
+                </li>
+            </ul>
+            <p>
+                Use Previous, Next, Skip Backward and Skip Forward to navigate
+                through the recorded animations.
+            </p>
+        </div>
+    </section>
+
+    <section id="bst-operations">
+        <h2>6. Binary Search Tree operations</h2>
+
+        <div class="info-card">
+            <h3>Random BSTree</h3>
+            <p>
+                Generates a random Binary Search Tree using values from
+                the specified minimum and maximum range.
+            </p>
+
+            <h3>Insert</h3>
+            <p>
+                Enter a value to insert a new node. The algorithm compares
+                the value with existing nodes and follows the BST ordering
+                rule until it finds the correct insertion position.
+            </p>
+
+            <h3>Find</h3>
+            <p>
+                Enter a value to search for its first occurrence.
+                The algorithm follows the BST ordering rule to find the node.
+            </p>
+
+            <h3>Delete</h3>
+            <p>
+                Select a node and use Delete. Deletion handles the standard
+                cases: a leaf node, a node with one child, and a node with
+                two children.
+            </p>
+
+            <h3>Get Min and Get Max</h3>
+            <p>
+                These operations find the smallest or largest value in the
+                selected subtree. If no node is selected, the whole tree
+                is considered.
+            </p>
+
+            <h3>Get Predecessor and Get Successor</h3>
+            <p>
+                The predecessor is the previous node in sorted inorder order.
+                The successor is the next node in sorted inorder order.
+                Select a node before executing these operations.
+            </p>
+
+            <h3>To Preorder Array</h3>
+            <p>
+                Traverses the tree in Root, Left, Right order and displays
+                the resulting array.
+            </p>
+
+            <h3>To Inorder Array</h3>
+            <p>
+                Traverses the tree in Left, Root, Right order. For a BST,
+                the resulting values are in sorted order.
+            </p>
+
+            <h3>To Postorder Array</h3>
+            <p>
+                Traverses the tree in Left, Right, Root order and displays
+                the resulting array.
+            </p>
+        </div>
+        <p>
+            <a href="bst.html">Open Binary Search Tree Visualiser</a>
+            to practise these operations.
+        </p>
+    </section>
+
+    <section id="heap-operations">
+        <h2>7. Binary Heap operations</h2>
+
+        <div class="info-card">
+            <h3>Random Heap</h3>
+            <p>
+                Generates a random Binary Max Heap using values from
+                the specified minimum and maximum range.
+            </p>
+
+            <h3>Build Heap</h3>
+            <p>
+                Enter comma-separated values to construct a max heap.
+                The algorithm rearranges the values to satisfy the
+                max-heap property.
+            </p>
+
+            <h3>Insert</h3>
+            <p>
+                Enter a value to add it to the heap. The new element is
+                placed in the next available position and moved upward
+                as necessary to restore the max-heap property.
+            </p>
+
+            <h3>Delete</h3>
+            <p>
+                Select a node and use Delete to remove it. The heap is
+                reorganised to maintain its structural and ordering properties.
+            </p>
+
+            <h3>Extract Max</h3>
+            <p>
+                Removes and returns the root node, which contains the
+                maximum value. The heap is then reorganised.
+            </p>
+
+            <h3>Get Max</h3>
+            <p>
+                Returns the root node without removing it.
+            </p>
+
+            <h3>Heap Sort</h3>
+            <p>
+                Uses the heap to produce a sorted array. In this visualiser,
+                the resulting array is displayed after the operation.
+            </p>
+        </div>
+        <p>
+            <a href="heap.html">Open Binary Heap Visualiser</a>
+            to practise these operations.
+        </p>
+    </section>
+
+    <section id="tips">
+        <h2>8. Helpful usage tips</h2>
+        <div class="info-card">
+            <ul>
+                <li>
+                    Wait for an animation to finish before starting another
+                    algorithm when the operation controls are disabled.
+                </li>
+                <li>
+                    Click a node to select it before using operations that
+                    require a selected node.
+                </li>
+                <li>
+                    Use Pause and Play to study an animation at your own pace.
+                </li>
+                <li>
+                    Reduce the movement speed or increase the step duration
+                    when you need more time to understand an algorithm.
+                </li>
+                <li>
+                    Use the history list to revisit previously executed
+                    algorithms.
+                </li>
+                <li>
+                    Remember that a BST and a Binary Max Heap follow
+                    different ordering rules.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="note">
+        <strong>Continue learning:</strong>
+        Visit the <a href="pseudocodes.html">Pseudocodes</a> page for
+        algorithm explanations and step-by-step pseudocode.
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-links">
+            <a href="instructions.html">Instructions</a>
+            <a href="pseudocodes.html">Pseudocodes</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p>Binary Tree Visualiser - Educational Project</p>
+    </div>
+</footer>
+</body>
+</html>

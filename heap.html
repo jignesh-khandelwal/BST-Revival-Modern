@@ -1,0 +1,155 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Binary Heap | Binary Tree Visualiser</title>
+
+    <link rel="stylesheet" href="assets/css/site.css">
+
+    <link rel="stylesheet"
+          href="Tree/styles/jquery/smoothness/jquery-ui-1.10.3.custom.css">
+
+    <script src="assets/js/site.js" defer></script>
+
+    <style>
+        .heap-workspace {
+            width: 100%;
+            max-width: 1200px;
+            margin: 24px auto;
+        }
+
+        #controlDiv {
+            width: 100%;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        #drawDiv {
+            width: 100%;
+            height: 500px;
+            min-height: 350px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .visualiser-heading {
+            margin: 28px 0 12px;
+        }
+
+        @media (max-width: 600px) {
+            #drawDiv {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a class="site-brand" href="index.html" aria-label="Home">
+            <span class="brand-placeholder">BINARY TREE<br>VISUALISER</span>
+        </a>
+
+        <button class="menu-toggle" type="button"
+                aria-expanded="false"
+                aria-controls="primary-navigation">Menu</button>
+
+        <nav class="primary-nav" id="primary-navigation"
+             aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="heap.html">Binary Heap</a>
+            <a href="bst.html">BST</a>
+            <a href="pseudocodes.html">Pseudocodes</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-main">
+
+    <h1 class="page-heading">Binary Heap Visualiser</h1>
+
+    <p class="page-intro">
+        Explore Binary Heap operations through interactive visualisation.
+        Build a heap, insert and delete elements, extract the maximum,
+        and perform Heap Sort.
+    </p>
+
+    <section class="content-section heap-workspace">
+
+        <h2>Binary Heap</h2>
+
+        <p>
+            Use the controls below to perform heap operations and observe
+            the changes through animation.
+        </p>
+
+        <h3 class="visualiser-heading">Operations and Animation Controls</h3>
+
+        <div id="controlDiv"></div>
+
+        <h3 class="visualiser-heading">Heap Visualisation</h3>
+
+        <div id="drawDiv"></div>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-links">
+            <a href="instructions.html">Instructions</a>
+            <a href="pseudocodes.html">Pseudocodes</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <p>Binary Tree Visualiser - Educational Project</p>
+    </div>
+</footer>
+
+<!-- Original JSGL dependency retained for compatibility -->
+<script src="../Tree/btv/third-party/jsgl.js"></script>
+
+<script src="../Tree/btv/third-party/jquery-1.9.1.js"></script>
+<script src="../Tree/btv/third-party/jquery-ui-1.10.3.custom.js"></script>
+
+<!-- Modern SVG renderer and JSGL compatibility layer -->
+<script src="assets/js/svg-renderer.js"></script>
+<script src="assets/js/jsgl-compat.js"></script>
+<script src="assets/js/svg-adapter.js"></script>
+
+<!-- Original Binary Heap application logic -->
+<script src="../Tree/btv/btv.js"></script>
+<script src="../Tree/btv/Elements.js"></script>
+<script src="../Tree/btv/BinaryTree.js"></script>
+<script src="../Tree/btv/Algorithms.js"></script>
+<script src="../Tree/btv/Visualiser.js"></script>
+<script src="../Tree/btv/Controllers.js"></script>
+
+<script>
+    window.heapController = new btv.BinaryHeapController(
+        document.getElementById("controlDiv"),
+        document.getElementById("drawDiv")
+    );
+
+    console.log("Production Heap controller created:",
+        !!window.heapController);
+
+    console.log("Production SVG panel created:",
+        !!window.heapController.visualiser.panel);
+</script>
+
+</body>
+</html>
+

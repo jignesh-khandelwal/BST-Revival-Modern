@@ -1,0 +1,724 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Binary Tree Visualiser algorithm pseudocode for Binary Trees, Max Heaps and Binary Search Trees.">
+    <title>Pseudocodes | Binary Tree Visualiser</title>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="index.html">
+            <span>Binary Tree Visualiser</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav id="primary-nav" class="primary-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="bst.html">BST</a>
+            <a href="heap.html">Binary Heap</a>
+            <a href="instructions.html">Instructions</a>
+            <a href="pseudocodes.html" aria-current="page">Pseudocodes</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-main">
+<div class="instructions-page pseudocodes-page">
+    <section class="page-intro">
+        <p class="eyebrow">LEARN THE ALGORITHMS</p>
+        <h1>Data Structures &amp; Pseudocodes</h1>
+        <p>
+            Explore the data structures and algorithms used by the Binary Tree Visualiser.
+            The examples use simplified JavaScript-style pseudocode to explain the logic
+            behind the operations.
+        </p>
+        <p class="note">
+            These examples focus on the main algorithmic steps. They assume valid inputs
+            and omit some application-specific animation, history and visualisation code.
+            Empty-tree and null-node cases are mentioned where relevant.
+        </p>
+    </section>
+
+    <section class="quick-menu" aria-label="Pseudocode topics">
+        <h2>Quick navigation</h2>
+        <div class="quick-menu-links">
+            <a href="#binary_tree">Binary Tree</a>
+            <a href="#binary_heap">Binary Heap (Max Heap)</a>
+            <a href="#heapify-down">Heapify Down</a>
+            <a href="#heapify-up">Heapify Up</a>
+            <a href="#random_binary_heap">Random Heap</a>
+            <a href="#build_heap">Build Heap</a>
+            <a href="#bh_insert">Heap Insert</a>
+            <a href="#bh_delete">Heap Delete</a>
+            <a href="#bh_get_max">Get Max</a>
+            <a href="#extract_max">Extract Max</a>
+            <a href="#heap_sort">Heap Sort</a>
+            <a href="#binary_search_tree">Binary Search Tree</a>
+            <a href="#random_binary_search_tree">Random BST</a>
+            <a href="#bst_insert">BST Insert</a>
+            <a href="#find">Find</a>
+            <a href="#bst_delete">BST Delete</a>
+            <a href="#get_max">BST Get Max</a>
+            <a href="#get_min">BST Get Min</a>
+            <a href="#get_predecessor">Predecessor</a>
+            <a href="#get_successor">Successor</a>
+            <a href="#to_preorder_array">Preorder</a>
+            <a href="#to_inorder_array">Inorder</a>
+            <a href="#to_postorder_array">Postorder</a>
+        </div>
+    </section>
+
+    <section id="binary_tree" class="content-section">
+        <h2>1. Binary Tree</h2>
+        <p>
+            A binary tree is a hierarchical data structure in which each node contains
+            a value and can have at most two children: a left child and a right child.
+            The first node is the root. A node with no children is called a leaf.
+        </p>
+        <ul>
+            <li><strong>Root:</strong> The topmost node.</li>
+            <li><strong>Parent:</strong> A node directly above another node.</li>
+            <li><strong>Child:</strong> A node directly below another node.</li>
+            <li><strong>Leaf:</strong> A node without children.</li>
+            <li><strong>Subtree:</strong> A node together with its descendants.</li>
+        </ul>
+        <p>A node can be represented recursively:</p>
+        <pre><code>class BinaryTreeNode {
+    constructor(value) {
+        this.value = value;
+        this.parent = null;
+        this.left = null;
+        this.right = null;
+    }
+}</code></pre>
+        <p>
+            The application's BinaryTree structure provides operations such as
+            getRoot(), setRoot(), getCount(), build(), swapNodes(), getNode()
+            and getIndex().
+        </p>
+        <p class="complexity-note">
+            A tree traversal visits every node once: O(n) time.
+        </p>
+    </section>
+
+    <section id="binary_heap" class="content-section">
+        <h2>2. Binary Heap — Max Heap</h2>
+        <p>
+            A binary heap is a complete binary tree. Every level is full except
+            possibly the last, and nodes on the last level are filled from left to right.
+        </p>
+        <p>
+            This application implements a <strong>Max Heap</strong>. Every parent
+            has a value greater than or equal to the values of its children.
+            Therefore, the maximum value is always at the root.
+        </p>
+        <p>
+            A heap is commonly used to implement a priority queue, where the
+            highest-priority (largest) value is retrieved first.
+        </p>
+        <ul>
+            <li>Get Max: inspect the root.</li>
+            <li>Insert: add at the next available position, then heapify up.</li>
+            <li>Extract Max: remove the root, move the last node to the root,
+                then heapify down.</li>
+        </ul>
+        <p>
+            For a zero-based array representation, the children of index i are
+            at 2i + 1 and 2i + 2; the parent is at floor((i - 1) / 2).
+        </p>
+    </section>
+
+    <section id="heapify-down" class="content-section">
+        <h2>3. Heapify Down</h2>
+        <p>
+            Heapify Down restores the Max Heap property when a node may be smaller
+            than one of its children. It repeatedly swaps the node with its larger
+            child until the property is restored.
+        </p>
+        <pre><code>function heapifyDown(node) {
+    while (node has at least one child) {
+        greaterChild = the child with the greater value
+
+        if (node.value >= greaterChild.value) {
+            return
+        }
+
+        swap(node, greaterChild)
+        node = greaterChild
+    }
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(log n) in the worst case. Space: O(1) for this iterative version.
+        </p>
+    </section>
+
+    <section id="heapify-up" class="content-section">
+        <h2>4. Heapify Up</h2>
+        <p>
+            Heapify Up restores the Max Heap property after inserting a new node.
+            It compares the node with its parent and swaps them while the node
+            is greater than its parent.
+        </p>
+        <pre><code>function heapifyUp(node) {
+    while (node has a parent) {
+        parent = node.parent
+
+        if (parent.value >= node.value) {
+            return
+        }
+
+        swap(node, parent)
+        node = parent
+    }
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(log n) in the worst case. Space: O(1) for this iterative version.
+        </p>
+    </section>
+
+    <section id="random_binary_heap" class="content-section">
+        <h2>5. Random Binary Heap</h2>
+        <p>
+            The application generates a random collection of distinct values within
+            the supplied minimum and maximum range. It then builds a valid Max Heap.
+            This is an application-specific generator, not a general random-tree algorithm.
+        </p>
+        <pre><code>function randomBinaryHeap(min, max) {
+    count = random integer from 1 to
+            min(max - min + 1, 31)
+
+    values = generate count unique random integers
+             between min and max
+
+    buildHeap(values)
+}</code></pre>
+        <p class="complexity-note">
+            Generating unique values depends on the generation method.
+            Building the heap takes O(n) time.
+        </p>
+    </section>
+
+    <section id="build_heap" class="content-section">
+        <h2>6. Build Heap</h2>
+        <p>
+            Build Heap converts an array into a valid Max Heap. It starts from
+            the last non-leaf node and applies Heapify Down towards the root.
+        </p>
+        <pre><code>function buildHeap(array) {
+    tree = build complete binary tree from array
+
+    start = floor(array.length / 2) - 1
+
+    for (i = start; i >= 0; i--) {
+        heapifyDown(tree.getNode(i))
+    }
+
+    return tree
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(n), not O(n log n). Space: O(1) auxiliary space
+            when the existing tree is rearranged in place.
+        </p>
+    </section>
+
+    <section id="bh_insert" class="content-section">
+        <h2>7. Heap Insert</h2>
+        <p>
+            A new node is placed at the next available position to preserve the
+            complete-tree structure. Heapify Up then restores the Max Heap property.
+        </p>
+        <pre><code>function insertHeap(tree, value) {
+    node = new BinaryTreeNode(value)
+
+    if (tree is empty) {
+        tree.setRoot(node)
+        return node
+    }
+
+    index = tree.getCount()
+    parentIndex = floor((index - 1) / 2)
+    parent = tree.getNode(parentIndex)
+
+    if (index is odd) {
+        parent.setLeft(node)
+    } else {
+        parent.setRight(node)
+    }
+
+    heapifyUp(node)
+    return node
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(log n). The new node is inserted at the next complete-tree position.
+        </p>
+    </section>
+
+    <section id="bh_delete" class="content-section">
+        <h2>8. Heap Delete</h2>
+        <p>
+            The application allows deletion of a selected heap node. The last node
+            is moved into the selected node's position, and the heap property is
+            restored by moving the replacement up or down as necessary.
+        </p>
+        <pre><code>function deleteHeapNode(tree, target) {
+    last = tree.getNode(tree.getCount() - 1)
+
+    if (target is last) {
+        detach last from its parent
+        return
+    }
+
+    swap target and last
+    detach last from its parent
+
+    heapifyUp(target)
+    heapifyDown(target)
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(log n). The exact replacement node and its position must
+            be maintained when swapping nodes in a linked tree.
+        </p>
+    </section>
+
+    <section id="bh_get_max" class="content-section">
+        <h2>9. Get Max</h2>
+        <p>
+            The maximum value in a Max Heap is always stored at the root.
+            Get Max returns that node without removing it.
+        </p>
+        <pre><code>function getMaxHeap(tree) {
+    return tree.getRoot()
+}</code></pre>
+        <p class="complexity-note">Time: O(1).</p>
+    </section>
+
+    <section id="extract_max" class="content-section">
+        <h2>10. Extract Max</h2>
+        <p>
+            Extract Max returns and removes the root node. The last node replaces
+            the root, and Heapify Down restores the Max Heap property.
+        </p>
+        <pre><code>function extractMax(tree) {
+    maximum = tree.getRoot()
+
+    if (maximum is null) {
+        return null
+    }
+
+    deleteHeapNode(tree, maximum)
+    return maximum
+}</code></pre>
+        <p class="complexity-note">Time: O(log n).</p>
+    </section>
+
+    <section id="heap_sort" class="content-section">
+        <h2>11. Heap Sort</h2>
+        <p>
+            This application's Heap Sort repeatedly extracts the maximum value.
+            The extracted values are collected and reversed to produce ascending order.
+        </p>
+        <pre><code>function heapSort(tree) {
+    result = []
+
+    while (tree is not empty) {
+        result.push(extractMax(tree).value)
+    }
+
+    reverse(result)
+    return result
+}</code></pre>
+        <p class="complexity-note">
+            Time: O(n log n). The application performs repeated extraction
+            and returns an ascending array.
+        </p>
+    </section>
+
+    <section id="binary_search_tree" class="content-section">
+        <h2>12. Binary Search Tree (BST)</h2>
+        <p>
+            A Binary Search Tree is a binary tree organised by value. In this
+            application, values smaller than a node go into its left subtree,
+            while values greater than or equal to the node go into its right subtree.
+            Both subtrees must follow the same rule.
+        </p>
+        <p class="note">
+            Duplicate values are therefore inserted into the right subtree.
+        </p>
+    </section>
+
+    <section id="random_binary_search_tree" class="content-section">
+        <h2>13. Random Binary Search Tree</h2>
+        <p>
+            The application uses a custom random generator. It chooses a root value
+            and recursively generates left and right children within ranges that
+            preserve the BST ordering property. The generation probability decreases
+            at deeper levels to limit tree size and shape.
+        </p>
+        <pre><code>function randomBST(min, max) {
+    rootValue = random integer within a safe inner range
+    root = new BinaryTreeNode(rootValue)
+
+    generateChildren(root, 1, min, max)
+    return root
+}
+
+function generateChildren(node, level, min, max) {
+    if (range is too small or safety limit reached) {
+        return
+    }
+
+    chance = probability based on level
+
+    if (random chance succeeds) {
+        leftValue = random integer less than node.value
+        node.left = new BinaryTreeNode(leftValue)
+        generateChildren(node.left, level + 1,
+                         min, node.value - 1)
+    }
+
+    if (random chance succeeds) {
+        rightValue = random integer greater than or equal to node.value
+        node.right = new BinaryTreeNode(rightValue)
+        generateChildren(node.right, level + 1,
+                         node.value + 1, max)
+    }
+}</code></pre>
+        <p class="complexity-note">
+            This is a custom visualisation generator; it does not guarantee a
+            uniformly random BST shape.
+        </p>
+    </section>
+
+    <section id="bst_insert" class="content-section">
+        <h2>14. BST Insert</h2>
+        <p>
+            Start at the root and compare the new value with each visited node.
+            Move left for a smaller value and right for a greater or equal value.
+            Insert when the appropriate child position is empty.
+        </p>
+        <pre><code>function insertBST(tree, value) {
+    newNode = new BinaryTreeNode(value)
+
+    if (tree.getRoot() is null) {
+        tree.setRoot(newNode)
+        return newNode
+    }
+
+    current = tree.getRoot()
+
+    while (true) {
+        if (value >= current.value) {
+            if (current.right is null) {
+                current.setRight(newNode)
+                return newNode
+            }
+            current = current.right
+        } else {
+            if (current.left is null) {
+                current.setLeft(newNode)
+                return newNode
+            }
+            current = current.left
+        }
+    }
+}</code></pre>
+        <p class="complexity-note">
+            Average time: O(log n) for a reasonably balanced tree.
+            Worst case: O(n) for a skewed tree.
+        </p>
+    </section>
+
+    <section id="find" class="content-section">
+        <h2>15. Find</h2>
+        <p>
+            Find compares the requested value with the current node. It returns
+            the first matching node encountered, or null if the search reaches
+            an empty child position.
+        </p>
+        <pre><code>function find(tree, value) {
+    current = tree.getRoot()
+
+    while (current is not null) {
+        if (current.value == value) {
+            return current
+        }
+
+        if (value >= current.value) {
+            current = current.right
+        } else {
+            current = current.left
+        }
+    }
+
+    return null
+}</code></pre>
+        <p class="complexity-note">
+            Average time: O(log n). Worst case: O(n).
+        </p>
+    </section>
+
+    <section id="bst_delete" class="content-section">
+        <h2>16. BST Delete</h2>
+        <p>There are three main deletion cases:</p>
+        <ol>
+            <li><strong>No children:</strong> Disconnect the node from its parent.
+                If it is the root, make the tree empty.</li>
+            <li><strong>One child:</strong> Connect the node's only child directly
+                to its parent. If it is the root, make the child the new root.</li>
+            <li><strong>Two children:</strong> Find the inorder successor
+                (the minimum node in the right subtree), exchange its position
+                with the target, then remove the successor.</li>
+        </ol>
+        <pre><code>function deleteBST(tree, node) {
+    if (node has both children) {
+        successor = getSuccessor(node)
+        swapPositions(node, successor)
+    }
+
+    // The target now has at most one child.
+    child = node.left if it exists, otherwise node.right
+
+    if (node is the root) {
+        tree.setRoot(child)
+    } else if (node is the left child of its parent) {
+        node.parent.setLeft(child)
+    } else {
+        node.parent.setRight(child)
+    }
+
+    if (child is not null) {
+        child.parent = node.parent
+    }
+}</code></pre>
+        <p class="note">
+            This is a conceptual outline. The application's swapNodes operation
+            exchanges node positions and maintains parent/child relationships
+            before the final removal.
+        </p>
+        <p class="complexity-note">
+            Average time: O(log n). Worst case: O(n).
+        </p>
+    </section>
+
+    <section id="get_max" class="content-section">
+        <h2>17. BST Get Max</h2>
+        <p>
+            The maximum value is found by following right-child links until
+            no right child remains. The method can operate on a selected subtree.
+        </p>
+        <pre><code>function getMax(root) {
+    if (root is null) {
+        return null
+    }
+
+    current = root
+
+    while (current.right is not null) {
+        current = current.right
+    }
+
+    return current
+}</code></pre>
+        <p class="complexity-note">Time: O(h), where h is the tree height.</p>
+    </section>
+
+    <section id="get_min" class="content-section">
+        <h2>18. BST Get Min</h2>
+        <p>
+            The minimum value is found by following left-child links until
+            no left child remains.
+        </p>
+        <pre><code>function getMin(root) {
+    if (root is null) {
+        return null
+    }
+
+    current = root
+
+    while (current.left is not null) {
+        current = current.left
+    }
+
+    return current
+}</code></pre>
+        <p class="complexity-note">Time: O(h), where h is the tree height.</p>
+    </section>
+
+    <section id="get_predecessor" class="content-section">
+        <h2>19. BST Get Predecessor</h2>
+        <p>
+            The inorder predecessor is the node visited immediately before
+            the given node during inorder traversal.
+        </p>
+        <ol>
+            <li>If the node has a left subtree, its predecessor is the maximum
+                node in that subtree.</li>
+            <li>Otherwise, move up through ancestors until the current node
+                is reached from its parent's right child. That parent is the predecessor.</li>
+        </ol>
+        <pre><code>function getPredecessor(node) {
+    if (node.left is not null) {
+        return getMax(node.left)
+    }
+
+    child = node
+    parent = node.parent
+
+    while (parent is not null) {
+        if (parent.right == child) {
+            return parent
+        }
+
+        child = parent
+        parent = parent.parent
+    }
+
+    return null
+}</code></pre>
+        <p class="complexity-note">Time: O(h).</p>
+    </section>
+
+    <section id="get_successor" class="content-section">
+        <h2>20. BST Get Successor</h2>
+        <p>
+            The inorder successor is the node visited immediately after
+            the given node during inorder traversal.
+        </p>
+        <ol>
+            <li>If the node has a right subtree, its successor is the minimum
+                node in that subtree.</li>
+            <li>Otherwise, move up through ancestors until the current node
+                is reached from its parent's left child. That parent is the successor.</li>
+        </ol>
+        <pre><code>function getSuccessor(node) {
+    if (node.right is not null) {
+        return getMin(node.right)
+    }
+
+    child = node
+    parent = node.parent
+
+    while (parent is not null) {
+        if (parent.left == child) {
+            return parent
+        }
+
+        child = parent
+        parent = parent.parent
+    }
+
+    return null
+}</code></pre>
+        <p class="complexity-note">Time: O(h).</p>
+    </section>
+
+    <section id="to_preorder_array" class="content-section">
+        <h2>21. Preorder Traversal</h2>
+        <p>
+            Preorder processes the current node first, then the left subtree,
+            and finally the right subtree.
+        </p>
+        <p><strong>Order:</strong> Root → Left → Right</p>
+        <pre><code>function preorder(node, result) {
+    if (node is null) {
+        return
+    }
+
+    result.push(node)
+    preorder(node.left, result)
+    preorder(node.right, result)
+}</code></pre>
+        <p class="complexity-note">Time: O(n). Recursive space: O(h).</p>
+    </section>
+
+    <section id="to_inorder_array" class="content-section">
+        <h2>22. Inorder Traversal</h2>
+        <p>
+            Inorder processes the left subtree first, then the current node,
+            and finally the right subtree. In a BST, this produces values
+            in non-decreasing order.
+        </p>
+        <p><strong>Order:</strong> Left → Root → Right</p>
+        <pre><code>function inorder(node, result) {
+    if (node is null) {
+        return
+    }
+
+    inorder(node.left, result)
+    result.push(node)
+    inorder(node.right, result)
+}</code></pre>
+        <p class="complexity-note">Time: O(n). Recursive space: O(h).</p>
+    </section>
+
+    <section id="to_postorder_array" class="content-section">
+        <h2>23. Postorder Traversal</h2>
+        <p>
+            Postorder processes the left subtree, then the right subtree,
+            and finally the current node.
+        </p>
+        <p><strong>Order:</strong> Left → Right → Root</p>
+        <pre><code>function postorder(node, result) {
+    if (node is null) {
+        return
+    }
+
+    postorder(node.left, result)
+    postorder(node.right, result)
+    result.push(node)
+}</code></pre>
+        <p class="complexity-note">Time: O(n). Recursive space: O(h).</p>
+    </section>
+
+    <section class="content-section">
+        <h2>Algorithm complexity summary</h2>
+        <div class="reference-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Time complexity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Heap Get Max</td><td>O(1)</td></tr>
+                    <tr><td>Heap Insert</td><td>O(log n)</td></tr>
+                    <tr><td>Heap Extract Max</td><td>O(log n)</td></tr>
+                    <tr><td>Build Heap</td><td>O(n)</td></tr>
+                    <tr><td>Heap Sort</td><td>O(n log n)</td></tr>
+                    <tr><td>BST Find / Insert / Delete</td><td>Average O(log n), worst O(n)</td></tr>
+                    <tr><td>BST Get Min / Get Max</td><td>O(h)</td></tr>
+                    <tr><td>BST Predecessor / Successor</td><td>O(h)</td></tr>
+                    <tr><td>Tree Traversals</td><td>O(n)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="note">
+            n is the number of nodes and h is the height of the tree.
+            A balanced tree has height approximately O(log n); a skewed tree
+            can have height O(n).
+        </p>
+    </section>
+</div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <p>Binary Tree Visualiser</p>
+        <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</footer>
+</body>
+</html>
+
